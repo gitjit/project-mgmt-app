@@ -23,7 +23,7 @@ In this project, we will build a project management application using GraphQL an
 
 <!-- /TOC -->
 
-## Setting up the project
+## 1. Setting up the project
 
 ```bash
 $ npm init -y
@@ -31,7 +31,7 @@ $ npm install express express-graphql graphql mongoose cors colors
 $ npm install -D nodemon dotenv // dev dependencies
 ```
 
-### Setting up the Server
+### 1.1. Setting up the Server
 
 Let us create a folder for the server and create a file `index.js` in it. Also create an `.env` file to store the environment variables.
 
@@ -54,7 +54,7 @@ app.listen(port, console.log(`App listening on port : ${port}`));
 
 Now let us test the server by running the command `npm run dev` which will start the server on port 5001.
 
-## Defining GraphQL Schema
+## 2. Defining GraphQL Schema
 
 Before we switch our focus to MongoDB, let us setup the GraphQL server with some sample data.
 I have created a file called sampleData.js in the server folder and added some sample data to it. It holds the data for the clients and projects.It contains arrays of client and project objects.
@@ -88,11 +88,11 @@ Now we have some sample data to work with. Let us create a schema for the GraphQ
 
 The GraphQL schema for the project management app is defined in `server/schema/schema.js`. It outlines the structure of the data and the types of queries that can be executed against the GraphQL server.
 
-### Types
+### 2.1. Types
 
 We start the schema by defining the types that represent the data in the application. The schema defines two types: `ClientType` and `ProjectType`.
 
-#### ClientType
+#### 2.1.1. ClientType
 
 Represents a client with the following fields:
 
@@ -101,7 +101,7 @@ Represents a client with the following fields:
 - `email`: The email address of the client. (GraphQLString)
 - `phone`: The phone number of the client. (GraphQLString)
 
-#### ProjectType
+#### 2.1.2. ProjectType
 
 Represents a project with the following fields:
 
@@ -112,7 +112,7 @@ Represents a project with the following fields:
 - `status`: The current status of the project. (GraphQLString)
 - `client`: A reference to the client associated with the project. (ClientType)
 
-### Root Query
+### 2.2. Root Query
 
 The root query defines the entry points for the API:
 
@@ -121,7 +121,7 @@ The root query defines the entry points for the API:
 - `projects`: Retrieves a list of all projects. Returns `[ProjectType]`.
 - `project`: Retrieves a single project by ID. Accepts `id` (GraphQLID) as an argument. Returns `ProjectType`.
 
-## Starting the GraphQL Server
+## 3. Starting the GraphQL Server
 
 Now with our schema ready let us run our graphql endpoint. We will use express-graphql to create the graphql server.
 
@@ -149,7 +149,7 @@ Now with all these changes let us restart our server and test the graphql endpoi
 
 ![](_images/2024-07-10-06-38-09.png)
 
-## Setting up MongoDB
+## 4. Setting up MongoDB
 
 Now that we have our GraphQL server setup, let us switch our focus to MongoDB. We will be using Mongoose to interact with MongoDB. Let us start by creating a connection to MongoDB. I am using mongoDB Atlas for this project.
 
@@ -220,7 +220,7 @@ App listening on port : 5001
 MongoDB connected: ac-nylntus-shard-00-02.kc5wx7u.mongodb.net
 ```
 
-## Creating Mongoose Models
+## 5. Creating Mongoose Models
 
 Now that we have connected to MongoDB, let us create Mongoose models for the clients and projects. I have created a folder called models in the server folder and created two files Client.js and Project.js. The Client.js file contains the schema for the client and the Project.js file contains the schema for the project.
 
@@ -274,7 +274,7 @@ const projectSchema = new mongoose.Schema({
 module.exports = mongoose.model("Project", projectSchema);
 ```
 
-## Now let us update our graphql schema to use these models
+## 6. Now let us update our graphql schema to use these models
 
 ```js
 //Query : Root Query
@@ -315,17 +315,17 @@ const RootQuery = new GraphQLObjectType({
 });
 ```
 
-## Mongoose and Singleton Pattern
+## 7. Mongoose and Singleton Pattern
 
 Mongoose acts as a singleton within a Node.js application. This means that when you require Mongoose in different parts of your application, you are essentially importing the same instance of Mongoose due to Node.js's module caching mechanism. Once a module is loaded, it is cached, and subsequent calls to `require` that module will return the same instance.
 
-### Benefits of Mongoose Singleton Pattern
+### 7.1. Benefits of Mongoose Singleton Pattern
 
 - **Efficiency**: Utilizing a single connection pool managed by Mongoose across your application reduces overhead and improves performance.
 - **Consistency**: Ensures that your application's data layer is consistent, as all parts of your application interact with the database through the same Mongoose instance.
 - **Simplicity**: Simplifies connection management, as you only need to establish a connection to your MongoDB database once, and then you can reuse that connection throughout your application.
 
-### Implementing Mongoose Singleton
+### 7.2. Implementing Mongoose Singleton
 
 Here's a typical pattern for connecting to MongoDB using Mongoose in a way that leverages its singleton nature:
 
@@ -340,6 +340,6 @@ Here's a typical pattern for connecting to MongoDB using Mongoose in a way that 
 
 By following this pattern, you leverage the singleton nature of Mongoose to efficiently and consistently manage your application's data layer.
 
-## Reference
+## 8. Reference
 
 https://www.youtube.com/watch?v=BcLNfwF04Kw
