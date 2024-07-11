@@ -1,3 +1,27 @@
+# Project Management App with GraphQL and MongoDB
+
+In this project, we will build a project management application using GraphQL and MongoDB. The application will allow users to manage clients and projects. We will use GraphQL to define the API for the application and MongoDB to store the data.
+
+<!-- TOC -->
+
+- [Project Management App with GraphQL and MongoDB](#project-management-app-with-graphql-and-mongodb)
+  - [1. Setting up the project](#1-setting-up-the-project)
+    - [1.1. Setting up the Server](#11-setting-up-the-server)
+  - [2. Defining GraphQL Schema](#2-defining-graphql-schema)
+    - [2.1. Types](#21-types)
+      - [2.1.1. ClientType](#211-clienttype)
+      - [2.1.2. ProjectType](#212-projecttype)
+    - [2.2. Root Query](#22-root-query)
+  - [3. Starting the GraphQL Server](#3-starting-the-graphql-server)
+  - [4. Setting up MongoDB](#4-setting-up-mongodb)
+  - [5. Creating Mongoose Models](#5-creating-mongoose-models)
+  - [6. Now let us update our graphql schema to use these models](#6-now-let-us-update-our-graphql-schema-to-use-these-models)
+  - [7. Mongoose and Singleton Pattern](#7-mongoose-and-singleton-pattern)
+    - [7.1. Benefits of Mongoose Singleton Pattern](#71-benefits-of-mongoose-singleton-pattern)
+    - [7.2. Implementing Mongoose Singleton](#72-implementing-mongoose-singleton)
+
+<!-- /TOC -->
+
 ## Setting up the project
 
 ```bash
@@ -29,7 +53,7 @@ app.listen(port, console.log(`App listening on port : ${port}`));
 
 Now let us test the server by running the command `npm run dev` which will start the server on port 5001.
 
-### Setting up the GraphQL
+## Defining GraphQL Schema
 
 Before we switch our focus to MongoDB, let us setup the GraphQL server with some sample data.
 I have created a file called sampleData.js in the server folder and added some sample data to it. It holds the data for the clients and projects.It contains arrays of client and project objects.
