@@ -5,20 +5,20 @@ In this project, we will build a project management application using GraphQL an
 <!-- TOC -->
 
 - [Project Management App with GraphQL and MongoDB](#project-management-app-with-graphql-and-mongodb)
-  - [1. Setting up the project](#1-setting-up-the-project)
-    - [1.1. Setting up the Server](#11-setting-up-the-server)
-  - [2. Defining GraphQL Schema](#2-defining-graphql-schema)
-    - [2.1. Types](#21-types)
-      - [2.1.1. ClientType](#211-clienttype)
-      - [2.1.2. ProjectType](#212-projecttype)
-    - [2.2. Root Query](#22-root-query)
-  - [3. Starting the GraphQL Server](#3-starting-the-graphql-server)
-  - [4. Setting up MongoDB](#4-setting-up-mongodb)
-  - [5. Creating Mongoose Models](#5-creating-mongoose-models)
-  - [6. Mongoose and Singleton Pattern](#6-mongoose-and-singleton-pattern)
-    - [6.1. Benefits of Mongoose Singleton Pattern](#61-benefits-of-mongoose-singleton-pattern)
-    - [6.2. Implementing Mongoose Singleton](#62-implementing-mongoose-singleton)
-  - [7. Now let us update our graphql schema to use these models](#7-now-let-us-update-our-graphql-schema-to-use-these-models)
+  - [1. 1. Setting up the project](#1-1-setting-up-the-project)
+    - [1.1. 1.1. Setting up the Server](#11-11-setting-up-the-server)
+  - [2. 2. Defining GraphQL Schema](#2-2-defining-graphql-schema)
+    - [2.1. 2.1. Types](#21-21-types)
+      - [2.1.1. 2.1.1. ClientType](#211-211-clienttype)
+      - [2.1.2. 2.1.2. ProjectType](#212-212-projecttype)
+    - [2.2. 2.2. Root Query](#22-22-root-query)
+  - [3. 3. Starting the GraphQL Server](#3-3-starting-the-graphql-server)
+  - [4. 4. Setting up MongoDB](#4-4-setting-up-mongodb)
+  - [5. 5. Creating Mongoose Models](#5-5-creating-mongoose-models)
+  - [6. 6. Mongoose and Singleton Pattern](#6-6-mongoose-and-singleton-pattern)
+    - [6.1. 6.1. Benefits of Mongoose Singleton Pattern](#61-61-benefits-of-mongoose-singleton-pattern)
+    - [6.2. 6.2. Implementing Mongoose Singleton](#62-62-implementing-mongoose-singleton)
+  - [7. 7. Now let us update our graphql schema to use these models](#7-7-now-let-us-update-our-graphql-schema-to-use-these-models)
     - [7.1. Sample queries](#71-sample-queries)
   - [8. Adding Mutation](#8-adding-mutation)
 
@@ -526,6 +526,17 @@ Now let us add the mutation to add a project and delete a project.
         name
       }
       ```
+
+## Setting up the Client App with React
+
+Now that we have our GraphQL server setup, let us create a client application using React to interact with the server. We will use Apollo Client to make requests to the GraphQL server and fetch data from it.
+
+```bash
+$ npx create-react-app client
+$ cd client
+$  npm i @apollo/client graphql react-router-dom react-icons
+```
+
 
 ## 8. Reference
 
