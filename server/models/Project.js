@@ -19,6 +19,7 @@ const projectSchema = new mongoose.Schema({
     type: String,
     enum: ["Not Started", "In Progress", "Completed"],
     required: true,
+    default: "Not Started", // Add this line to set a default value
   },
 });
 

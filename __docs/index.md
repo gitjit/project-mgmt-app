@@ -338,3 +338,38 @@ Here's a typical pattern for connecting to MongoDB using Mongoose in a way that 
    Anywhere else in your application, simply require Mongoose using `require('mongoose')`. You'll be working with the same Mongoose instance, and thus, the same database connection.
 
 By following this pattern, you leverage the singleton nature of Mongoose to efficiently and consistently manage your application's data layer.
+
+## Sample Query and Mutation
+
+```js
+#Add Client
+
+mutation{
+  addClient(name:"Tony Stark", email:"ironman@gmail.com",phone:"123-555-3333"){
+    id,
+    name,
+    email,
+    phone
+  }
+}
+
+# Query Clients
+{
+  clients{
+    id,
+    name,
+    email,
+    phone
+  }
+}
+
+#Query a Client
+{
+  client(id:"668fddcd1fedb010fdaeccf9"){
+    name,
+    email,
+    phone
+  }
+}
+
+```
