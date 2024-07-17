@@ -18,3 +18,22 @@ body {
     monospace;
 } */
 
+/* Add to client/src/index.css */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd; /* Light grey border */
+}
+
+.table th {
+  background-color: #f2f2f2; /* Light grey background */
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Zebra stripes */
+}

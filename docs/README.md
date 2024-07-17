@@ -411,8 +411,7 @@ const ProjectStatusEnum = new GraphQLEnumType({
 
 Now let us add the mutation to add a project and delete a project.
 
-````js
-
+```js
 // Add a project
     addProject: {
       type: ProjectType,
@@ -463,12 +462,13 @@ Now let us add the mutation to add a project and delete a project.
           },
           { new: true } //// This option returns the document after update was applied.
         );
-      },
+      }
+    }
+```
 
-      ```
-      Now let us test the add project and delete project mutation in the graphiql interface.
+Now let us test the add project and delete project mutation in the graphiql interface.
 
-      ```
+```js
         mutation{
         addProject(name:"Desktop",description:"UWP Project",clientId:"6690a7de1ad0c281bb6837d6", status:COMPLETED){
           name,
@@ -501,7 +501,8 @@ Now let us add the mutation to add a project and delete a project.
       deleteProject(id:"6690ae651f2c6875a85eb213"){
         name
       }
-      ```
+
+```
 
 ## Setting up the Client App with React
 
@@ -513,8 +514,51 @@ $ cd client
 $  npm i @apollo/client graphql react-router-dom react-icons
 ```
 
+Now let us create an Apollo client and wrap our application with the ApolloProvider in the App.js file.
+
+```js
+import Header from "./components/Header";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "http://localhost:5001/graphql",
+  cache: new InMemoryCache(),
+});
+
+function App() {
+  return (
+    <>
+      <ApolloProvider client={client}>
+        <div className="container">
+          <Header />
+        </div>
+      </ApolloProvider>
+    </>
+  );
+}
+
+export default App;
+```
+
+## Configure concurrently to run both server and client
+
+```bash
+// From the root folder
+npm install concurrently --save-dev
+```
+
+Update the root package.json
+
+```json
+"scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
+    "client": "npm start --prefix client",
+    "dev:all": "concurrently \"npm run dev\" \"npm run client\""
+  },
+
+```
 
 ## Reference
 
 https://www.youtube.com/watch?v=BcLNfwF04Kw
-````
